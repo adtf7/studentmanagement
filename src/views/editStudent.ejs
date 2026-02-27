@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h2 {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .error-message {
+            background: #ffe5e5;
+            color: #d32f2f;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #444;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #667eea;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(102,126,234,0.2);
+        }
+
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .update-btn {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .update-btn:hover {
+            background: #1976D2;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            color: #000;
+        }
+
+        @media (max-width: 500px) {
+            .buttons {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .update-btn, .back-link {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>🔄 Edit Student</h2>
+    </div>
+
+    <% if(error) { %>
+        <p class="error-message"><%= error %></p>
+    <% } %>
+
+    <form action="/edit/<%= student._id %>" method="POST">
+        <div class="form-group">
+            <label for="name">Student Name</label>
+            <input type="text" id="name" name="name" value="<%= student.name %>" required />
+        </div>
+
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" value="<%= student.age %>" required min="1" />
+        </div>
+
+        <div class="form-group">
+            <label for="grade">Grade</label>
+            <input type="text" id="grade" name="grade" value="<%= student.grade %>" required />
+        </div>
+
+        <div class="buttons">
+            <button type="submit" class="update-btn">Update Student</button>
+            <a href="/" class="back-link">Back to Home</a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
